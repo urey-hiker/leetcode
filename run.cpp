@@ -9,6 +9,11 @@
 #include "house-robber.cpp"
 #include "longest-palindromic-substring.cpp"
 #include "solve-the-equation.cpp"
+#include "zigzag-conversion.cpp"
+#include "reverse-integer.cpp"
+#include "string-to-integer-atoi.cpp"
+#include "palindrome-number.cpp"
+#include "regular-expression-matching.cpp"
 
 TEST(leetcode, twoSum)
 {
@@ -157,6 +162,66 @@ TEST(leetcode, solveEquation)
     ASSERT_EQ(p.solve("000x=00"), "Infinite solutions");
 
     ASSERT_EQ(p.solve("-010x=-00"), "x=0");
+}
+
+TEST(leetcode, zigzagConvert)
+{
+    zigzagConvert p;
+    ASSERT_EQ(p.solve2("PAYPALISHIRING", 4), "PINALSIGYAHRPI");
+    ASSERT_EQ(p.solve2("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR");
+    ASSERT_EQ(p.solve2("PAHNAPLSIIGYIR", 2), "PHALIGIANPSIYR");
+    ASSERT_EQ(p.solve2("wlrbbmqbhcdarzowkkyhiddqscdxrjmowfrxsjybldbefsarcbynecdyggxxpklorellnmpapqfwkhopkmco", 61),"wlrbbmqbhcdarzowkkyhiddqscdxrjmowfrxsjoycbmlkdpboehfkswafrqcpbaypnmencldlyegrgoxlxkp");
+ /* PAHNAPLSIIGYIR
+    PHALIGI
+    ANPSIYR
+    */
+}
+
+TEST(leetcode, reverseInteger)
+{
+    reverseInteger p;
+    ASSERT_EQ(p.solve(123), 321);
+    
+    // cout<<res<<endl;
+}
+
+
+TEST(leetcode, myAtoi)
+{
+    myAtoi p;
+    ASSERT_EQ(p.solve("234"), 234);
+    ASSERT_EQ(p.solve("-234"), -234);
+    ASSERT_EQ(p.solve("qwer234"), 0);
+    ASSERT_EQ(p.solve("-2147483648"), -2147483648);
+    ASSERT_EQ(p.solve("91283472332"), INT32_MAX);
+    ASSERT_EQ(p.solve("-91283472332"), INT32_MIN);
+    ASSERT_EQ(p.solve("   91283472332"), INT32_MAX);
+    ASSERT_EQ(p.solve("   ----2147483648"), 0);
+    ASSERT_EQ(p.solve("   -2147483648asdf"), INT32_MIN);
+    ASSERT_EQ(p.solve("   ----2147483648asdfasdf"), 0);
+}
+
+TEST(leetcode, isPalindrome) {
+    isPalindrome p;
+    ASSERT_EQ(p.solve(1), true);
+    ASSERT_EQ(p.solve(10), false);
+    ASSERT_EQ(p.solve(121), true);
+    ASSERT_EQ(p.solve(1221), true);
+    ASSERT_EQ(p.solve(120), false);
+    ASSERT_EQ(p.solve(1200021), true);
+    ASSERT_EQ(p.solve(1231), false);
+}
+
+TEST(leetocde, isMatch) {
+    isMatch p;
+    ASSERT_EQ(p.solve("ss", "s"), false);
+    ASSERT_EQ(p.solve("ss", "s*"), true);
+    ASSERT_EQ(p.solve("ab", ".*"), true);
+    ASSERT_EQ(p.solve("ab", "a*"), false);
+    ASSERT_EQ(p.solve("aab", "c*a*b"), true);
+    ASSERT_EQ(p.solve("mississippi", "mis*is*p*."), false);
+    ASSERT_EQ(p.solve("aaa", "a.a"), true);
+    ASSERT_EQ(p.solve("", "a*a*a*"), true);
 }
 
 int main(int argc, char* argv[])
